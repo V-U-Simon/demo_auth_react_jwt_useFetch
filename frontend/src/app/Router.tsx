@@ -13,6 +13,7 @@ import { Login } from "src/routes/Login";
 import { Logout } from "src/routes/Logout";
 import { Private } from "src/routes/Private";
 import { ProtectedUniversal } from "src/routes/ProtectedRoutes";
+import { Registration } from "src/routes/Registration";
 
 export const DataRoutes: React.FC = () => {
   const router = createBrowserRouter(
@@ -21,6 +22,7 @@ export const DataRoutes: React.FC = () => {
         {/* Public routes */}
         <Route index element={<Home />} />
         <Route path="login" element={<Login />} />
+        <Route path="registration" element={<Registration />} />
         {/* Private routes */}
         <Route path="" element={<ProtectedUniversal />}>
           <Route path="profile/" element={<Profile />} />

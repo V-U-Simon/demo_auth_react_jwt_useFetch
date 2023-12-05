@@ -9,7 +9,6 @@ interface ProtectedUniversalProps {
 
 export function ProtectedUniversal({ children, redirectPath = "/login/" }: ProtectedUniversalProps) {
   const { isAuthenticated } = useSession();
-  console.log(isAuthenticated());
 
   if (!isAuthenticated()) return <Navigate to={redirectPath} />;
   return children ? <>{children}</> : <Outlet />;

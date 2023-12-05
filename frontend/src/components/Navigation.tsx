@@ -34,8 +34,13 @@ function AuthMenu() {
     <>
       <div className="flex-none">
         {!isAuthenticated() && (
-          <a className="btn" href="/login">
+          <a className="btn btn-sm" href="/login">
             Login
+          </a>
+        )}
+        {!isAuthenticated() && (
+          <a className="btn btn-sm btn-primary mx-4" href="/registration">
+            Registration
           </a>
         )}
       </div>
