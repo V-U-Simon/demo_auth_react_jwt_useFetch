@@ -1,16 +1,21 @@
 export function Home() {
   return (
     <>
-      <div className="hero min-h-screen bg-base-200">
+      <div className="hero max-h-screen bg-base-200">
         <div className="hero-content text-center">
-          <div className="max-w-md">
-            <h1 className="text-5xl font-bold">Hello there</h1>
+          <div className="max-w-4xl">
+            <h1 className="text-5xl font-bold">Demo Auth: React / JWT / useFetch</h1>
 
             <p className="py-6">
-              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In
-              deleniti eaque aut repudiandae et a id nisi.
+              This is a simple example of implementing JWT tokens on client side for user authorization.
+              <br />
+              You can can alse using <a href="https://github.com/V-U-Simon/demo_auth_drf_jwt" className="link"></a>
+              demo_auth_drf_jwt repository for backend for authentication.
             </p>
-            <button className="btn btn-primary">Get Started</button>
+
+            <a href="/login/" className="btn btn-primary">
+              Get Started
+            </a>
           </div>
         </div>
       </div>
