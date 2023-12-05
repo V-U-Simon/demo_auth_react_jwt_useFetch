@@ -5,18 +5,23 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "tailwind": "npx tailwindcss -i ./src/app/input.css -o ./dist/output.css --watch",
+    "tailwind": "npx tailwindcss -i ./src/assets/input.css -o ./dist/output.css --watch",
+    "dev_concorent": "concurrently \"yarn vite\" \"npx tailwindcss -i ./src/assets/input.css -o ./dist/output.css --watch\"",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
   "dependencies": {
-    "axios": "^1.6.1",
+    "@hookform/resolvers": "^3.3.2",
+    "axios": "^1.6.2",
+    "clsx": "^2.0.0",
     "localforage": "^1.10.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.48.2",
     "react-jwt": "^1.2.0",
-    "react-router-dom": "^6.18.0"
+    "react-router-dom": "^6.18.0",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
@@ -24,11 +29,11 @@
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
     "@vitejs/plugin-react": "^4.0.3",
+    "concurrently": "^8.2.2",
     "daisyui": "^4.4.19",
     "eslint": "^8.45.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
-    "tailwindcss": "^3.3.5",
     "typescript": "^5.0.2",
     "vite": "^4.4.5"
   }

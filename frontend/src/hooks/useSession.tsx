@@ -2,18 +2,11 @@ import { SessionContext, SessionContextType } from "src/providers/sessionProvide
 import { useContext } from "react";
 import { storage } from "src/api/storage";
 
+/**
+ * Using for get data of authenticated user / access token / update token
+ */
 export function useSession() {
-  const { session } = useContext(SessionContext) as SessionContextType;
+  const { session, setSession, removeSession } = useContext(SessionContext) as SessionContextType;
   const isAuthenticated = () => Boolean(session?.access);
-  return { session, isAuthenticated };
-}
-
-export function useLogin() {
-  const { login, errors, setErrors } = useContext(SessionContext) as SessionContextType;
-  return { login, errors, setErrors };
-}
-
-export function useLogout() {
-  const { logout } = useContext(SessionContext) as SessionContextType;
-  return { logout };
+  return { session, setSession, removeSession, isAuthenticated };
 }

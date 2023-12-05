@@ -1,8 +1,14 @@
-import { Route, createRoutesFromElements, createBrowserRouter, RouterProvider, RouterProviderProps } from "react-router-dom";
+import {
+  Route,
+  createRoutesFromElements,
+  createBrowserRouter,
+  RouterProvider,
+  // RouterProviderProps,
+} from "react-router-dom";
 import React from "react";
 import { Home } from "src/routes/Home";
 import { Layout } from "src/routes/Layout";
-import { Account, Profile, User } from "src/routes/User";
+import { Profile } from "src/routes/Profile";
 import { Login } from "src/routes/Login";
 import { Logout } from "src/routes/Logout";
 
@@ -13,10 +19,7 @@ export const DataRoutes: React.FC = () => {
         <Route index element={<Home />} />
         <Route path="login" element={<Login />} />
         <Route path="logout" element={<Logout />} />
-        <Route path="user" element={<User />}>
-          <Route path="profile" element={<Profile />} />
-          <Route path="account" element={<Account />} />
-        </Route>
+        <Route path="profile" element={<Profile />} />
       </Route>
     )
   );

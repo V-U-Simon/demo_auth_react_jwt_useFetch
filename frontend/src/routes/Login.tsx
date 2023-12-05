@@ -1,70 +1,40 @@
-import React, { useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
-import { useLogin, useSession } from "src/hooks/useSession";
+import { LoginForm } from "src/components/LoginForm";
 
 export function Login() {
-  const { session, isAuthenticated } = useSession();
-  const { login, errors, setErrors } = useLogin();
-  const [formData, setFormData] = useState({ email: "", password: "" });
-
-  const handleChange = async (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-
-    setErrors({ ...errors, [name]: "" });
-  };
-
-  async function handleSubmit(event) {
-    event.preventDefault();
-
-    // ========== VALIDATION ==========
-    let valid = true;
-    const newErrors = {};
-
-    if (!formData.email) {
-      newErrors.email = "Email обязателен";
-      valid = false;
-    }
-
-    if (!formData.password) {
-      newErrors.password = "Пароль обязателен";
-      valid = false;
-    }
-
-    if (!valid) {
-      setErrors(newErrors);
-      return;
-    }
-
-    try {
-      await login(formData);
-    } catch (error) {
-      setErrors({ ...newErrors, message: "Ошибка входа. Пожалуйста, попробуйте еще раз." });
-    }
-  }
-
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="email">Email:</label>
-          <input type="email" id="email" name="email" value={formData.email} onChange={(e) => handleChange(e)} />
-          <span className="error">{errors.email}</span>
+    <div className="hero min-h-screen bg-base-200">
+      <div className="hero-content flex-col lg:flex-row">
+        <div className="text-center lg:text-left max-w-3xl">
+          <h1 className="text-5xl font-bold">Login now!</h1>
+          <p className="py-6">
+            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In
+            deleniti eaque aut repudiandae et a id nisi.
+          </p>
         </div>
-        <div>
-          <label htmlFor="password">Пароль:</label>
-          <input type="password" id="password" name="password" value={formData.password} onChange={(e) => handleChange(e)} />
-          <span className="error">{errors.password}</span>
+        <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+          <LoginForm />
         </div>
-        <div>
-          <button type="submit">Войти</button>
-        </div>
-        {errors.message && <p className="error">{errors.message}</p>}
-      </form>
-      {isAuthenticated() && <Navigate to="/" replace={true} />}
+      </div>
     </div>
   );
 }
+
+// <div>
+//   <form onSubmit={handleSubmit}>
+//     <div>
+//       <label htmlFor="email">Email:</label>
+//       <input type="email" id="email" name="email" value={formData.email} onChange={(e) => handleChange(e)} />
+//       <span className="error">{errors.email}</span>
+//     </div>
+//     <div>
+//       <label htmlFor="password">Пароль:</label>
+//       <input type="password" id="password" name="password" value={formData.password} onChange={(e) => handleChange(e)} />
+//       <span className="error">{errors.password}</span>
+//     </div>
+//     <div>
+//       <button type="submit">Войти</button>
+//     </div>
+//     {errors.message && <p className="error">{errors.message}</p>}
+//   </form>
+//   {isAuthenticated() && <Navigate to="/" replace={true} />}
+// </div>

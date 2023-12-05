@@ -9,3 +9,5 @@ COPY . .
 EXPOSE 5173
 
 CMD ["yarn", "dev"]
+# CMD ["yarn vite & \yarn tailwind"]
+# CMD ["bash"]
