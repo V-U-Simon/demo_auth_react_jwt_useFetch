@@ -1,6 +1,6 @@
 # Demo: React / JWT tokens / useFetch
 
-This is a simple example of implementing JWT tokens on client side  for user authorization.
+This is a simple example of implementing JWT tokens on client side for user authorization.
 
 Also using in this repository:
 - [zod](https://zod.dev)
