@@ -1,6 +1,4 @@
 import { NavItem } from "./NavItem";
-import { ParentNavItem } from "./ParentNavItem";
-
 import { useSession } from "src/hooks/useSession";
 
 export function Navbar() {
@@ -9,7 +7,9 @@ export function Navbar() {
       {/* drop-down */}
       <div className="navbar-start">
         <Dropdown />
-        <a className="btn btn-ghost text-xl">daisyUI</a>
+        <a href="/" className="btn btn-ghost text-xl">
+          JWT-Demo
+        </a>
       </div>
       {/* main-menu */}
       <div className="navbar-center hidden lg:flex">
