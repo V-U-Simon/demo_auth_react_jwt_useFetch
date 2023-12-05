@@ -15,6 +15,7 @@ export function Navbar() {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-md menu-horizontal px-1">
           <NavItem to="/" name="Home" />
+          <NavItem to="/private/" name="Private" />
         </ul>
       </div>
       {/* auth-menu */}
