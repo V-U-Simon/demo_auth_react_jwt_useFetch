@@ -13,7 +13,7 @@ export function Navbar() {
       </div>
       {/* main-menu */}
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
+        <ul className="menu menu-md menu-horizontal px-1">
           <NavItem to="/" name="Home" />
         </ul>
       </div>
@@ -40,12 +40,12 @@ function AuthMenu() {
       </div>
 
       {isAuthenticated() && (
-        <ul className="menu menu-horizontal bg-base-200 rounded-box">
+        <ul className="menu menu-sm menu-horizontal bg-base-200 rounded-bo p-0 rounded-md ">
           <li>
             <details>
               <summary>
                 {user.username}
-                <div className="avatar badge badge-sm">
+                <div className="avatar ">
                   <div className="w-10 rounded-full">
                     <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
                   </div>
@@ -64,8 +64,6 @@ function AuthMenu() {
 }
 
 function Dropdown() {
-  const { session, isAuthenticated } = useSession();
-
   return (
     <div className="dropdown">
       {/* BurgerButton */}

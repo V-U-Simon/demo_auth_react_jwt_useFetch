@@ -9,6 +9,8 @@ import { useSession } from "src/hooks/useSession";
 
 import { FormInput } from "src/components/FormInput";
 import { useState } from "react";
+import clsx from "clsx";
+import { sleep } from "src/api/sleep";
 
 const loginSchema = z.object({
   email: z.string().min(1, "Email address is required").email("Email Address is invalid"),
@@ -23,6 +25,8 @@ type LoginInput = z.infer<typeof loginSchema>;
 
 export function LoginForm() {
   const { session, setSession } = useSession();
+  const [loading, setLoading] = useState(false);
+
   const navigate = useNavigate();
   const formMethods = useForm<z.Schema>({
     criteriaMode: "all",
@@ -34,16 +38,19 @@ export function LoginForm() {
     formState: { errors },
   } = formMethods;
 
-  console.log("errors", errors);
   async function login({ email, password }: LoginInput): Promise<void> {
     try {
+      setLoading(true);
+      await sleep(1000);
       const newSession = await apiAuth.login({ email, password });
       await setSession(newSession);
       navigate("/profile/");
+      setLoading(false);
     } catch (errors: any) {
       if (errors?.response.status === 401) {
         setError("email", { name: "credentials" });
         setError("password", { name: "credentials", message: "No active account found with the given credentials" });
+        setLoading(false);
       }
     }
   }
@@ -65,7 +72,6 @@ export function LoginForm() {
           autoComplete="current-password"
           required
         />
-
         <label className="label">
           <a href="#" className="label-text-alt link link-hover">
             Forgot password?
@@ -75,7 +81,10 @@ export function LoginForm() {
         {errors?.root?.serverError.type === 401 && <p>Wrong credentials</p>}
 
         <div className="form-control mt-6">
-          <button className="btn btn-primary">Login</button>
+          <button className="btn btn-primary">
+            {loading && <span className="loading loading-spinner">123</span>}
+            {loading ? "Loading..." : "Login"}
+          </button>
         </div>
       </form>
     </FormProvider>
