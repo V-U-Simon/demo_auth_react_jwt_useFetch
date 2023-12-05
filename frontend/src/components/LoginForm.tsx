@@ -9,7 +9,6 @@ import { useSession } from "src/hooks/useSession";
 
 import { FormInput } from "src/components/FormInput";
 import { useState } from "react";
-import clsx from "clsx";
 import { sleep } from "src/api/sleep";
 
 const loginSchema = z.object({
@@ -39,19 +38,21 @@ export function LoginForm() {
   } = formMethods;
 
   async function login({ email, password }: LoginInput): Promise<void> {
+    setLoading(true);
     try {
-      setLoading(true);
       await sleep(1000);
       const newSession = await apiAuth.login({ email, password });
       await setSession(newSession);
       navigate("/profile/");
-      setLoading(false);
     } catch (errors: any) {
-      if (errors?.response.status === 401) {
+      if (errors?.response?.status === 401) {
         setError("email", { name: "credentials" });
         setError("password", { name: "credentials", message: "No active account found with the given credentials" });
-        setLoading(false);
+      } else {
+        setError("general", { message: "An error occurred while logging in" });
       }
+    } finally {
+      setLoading(false);
     }
   }
 
